@@ -1,4 +1,12 @@
 import os
+import sys
+
+# Настройки можно передать и аргументами запуска: python -m app.bot BOT_TOKEN=... DATABASE_URL=...
+for _arg in sys.argv[1:]:
+    if "=" in _arg:
+        _k, _v = _arg.split("=", 1)
+        if _k.isupper():
+            os.environ[_k] = _v.strip().strip("'\"")
 
 
 def _ids(raw: str) -> set[int]:
